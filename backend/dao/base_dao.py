@@ -29,3 +29,13 @@ class BaseDao:
                 return result
         else:
             raise TypeError(f'Id must be {int}')
+
+    def delete(self, model: BaseModel) -> None:
+        if isinstance(model, BaseModel):
+            with Session() as session:
+                session.delete(model)
+                session.commit()
+        else:
+            raise TypeError(f'Model must be {BaseModel}')
+
+

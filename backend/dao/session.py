@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from backend.models.base_model import BaseModel
 
 class Session:
   def __init__(self):
@@ -13,6 +14,7 @@ class Session:
   
   def __enter__(self):
     self.__engine = create_engine(self.__connection_string)
+    self.__create_tables()
     session = sessionmaker(self.__engine)
     self.__session = session()
     return self.__session
@@ -20,3 +22,7 @@ class Session:
   def __exit__(self, type, value, traceback):
     self.__session.close()
     self.__engine.dispose()
+  
+  def __create_tables(self):
+    BaseModel.metadata.bind = self.__engine
+    BaseModel.metadata.create_all()

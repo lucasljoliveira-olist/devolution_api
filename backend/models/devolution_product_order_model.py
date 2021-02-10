@@ -9,9 +9,7 @@ from backend.utils.validators import validate_type
 
 class DevolutionProductOrder(BaseModel):
     __tablename__ = 'devolution_product_order'
-    id_order_product = Column('id_order_product', Integer, ForeignKey(
-        'order_product.id'), nullable=False)
-    #order_product = relationship(OrderProduct)
+    id_order_product = Column('id_order_product', Integer, nullable=False)
     id_devolution = Column('id_devolution', Integer,
                            ForeignKey('devolution.id'), nullable=False)
     devolution = relationship(Devolution)

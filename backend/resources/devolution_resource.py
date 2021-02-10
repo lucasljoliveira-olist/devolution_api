@@ -9,9 +9,9 @@ class DevolutionResource(BaseResource):
     'id_order': fields.Integer,
     'id_devolution_type': fields.Integer,
     'id_devolution_reason': fields.Integer, 
-    'id_devolution_status': fields.Integer,
-    'data': fields.DateTime,
-    'buyer_reason': fields.String
+    'id_devolution_status': fields.Integer,    
+    'buyer_reason': fields.String,
+    'date': fields.DateTime
   }
 
   def __init__(self):
@@ -20,7 +20,7 @@ class DevolutionResource(BaseResource):
     super().__init__(self.__dao, self.__model_type)
   
   @marshal_with(fields)
-  def get(self, id_: int):
+  def get(self, id_: int=None):
     return super().get(id_)
   
   @marshal_with(fields)

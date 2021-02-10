@@ -16,7 +16,7 @@ class DevolutionReasonResource(BaseResource):
     super().__init__(self.__dao, self.__model_type)
   
   @marshal_with(fields)
-  def get(self, id_: int):
+  def get(self, id_: int=None):
     return super().get(id_)
   
   @marshal_with(fields)

@@ -1,18 +1,17 @@
 from sqlalchemy import Column, String, Integer, DateTime
 from sqlalchemy.orm import validates, relationship
 from sqlalchemy.sql.schema import ForeignKey
-from backend.models import BaseModel
+from backend.models.base_model import BaseModel
 from datetime import datetime
 from backend.utils.validators import validate_string_not_empty, validate_type, validate_length
 from backend.models.devolution_type_model import DevolutionType
 from backend.models.devolution_reason_model import DevolutionReason
 from backend.models.devolution_status_model import DevolutionStatus
 
+
 class Devolution(BaseModel):
     __tablename__ = 'devolution'
-    id_order = Column('id_order', Integer, ForeignKey(
-        'order.id'), nullable=False)
-    #order = relationship(Order)
+    id_order = Column('id_order', Integer, nullable=False)
     id_devolution_type = Column('id_devolution_type', Integer, ForeignKey(
         'devolution_type.id'), nullable=False)
     devolution_type = relationship(DevolutionType)
@@ -27,14 +26,14 @@ class Devolution(BaseModel):
 
     def __init__(self, id_order: int, id_devolution_type: int,
                  id_devolution_reason: int, id_devolution_status: int,
-                 date: datetime, buyer_reason: str) -> None:
+                 buyer_reason: str) -> None:
         self.id_order = id_order
         self.id_devolution_type = id_devolution_type
         self.id_devolution_reason = id_devolution_reason
         self.id_devolution_status = id_devolution_status
-        self.date = date
+        self.date = datetime.today()
         self.buyer_reason = buyer_reason
-    
+
     @validates('id_order', 'id_devolution_type', 'id_devolution_reason', 'id_devolution_status')
     def validate_id(self, key: str, id: int):
         validate_type(id, int, key)
@@ -44,7 +43,7 @@ class Devolution(BaseModel):
     def validate_date(self, key: str, date: datetime):
         validate_type(date, datetime, key)
         return date
-    
+
     @validates('buyer_reason')
     def validate_buyer_reason(self, key: str, buyer_reason: str):
         validate_type(buyer_reason, str, key)

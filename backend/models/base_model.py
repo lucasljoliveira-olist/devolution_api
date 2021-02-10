@@ -1,9 +1,9 @@
-from sqlalchemy.ext.declatative import declatative_base
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer
 
 
 
-Base = declatative_base()
+Base = declarative_base()
 
 class BaseModel(Base):
   __abstract__ = True

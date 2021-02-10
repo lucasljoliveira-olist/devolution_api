@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String
 from sqlalchemy.orm import validates
-from backend.models import BaseModel
+from backend.models.base_model import BaseModel
 from backend.utils.validators import validate_string_not_empty, validate_type, validate_length
 
 
