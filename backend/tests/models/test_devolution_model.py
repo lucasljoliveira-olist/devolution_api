@@ -9,7 +9,7 @@ from backend.models.base_model import BaseModel
 import pytest
 
 
-class TestDevolutionStatusModel:
+class TestDevolutionModel:
     @pytest.mark.parametrize('''id_order, id_devolution_type, 
         id_devolution_reason, id_devolution_status, buyer_reason''',
         [(1, 2, 3, 4, 'T'), 
