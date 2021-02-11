@@ -11,6 +11,6 @@ def validate_string_not_empty(value, key):
 
 
 def validate_length(value, max_len, key):
-    if len(value) > 100:
+    if len(value) > max_len:
         raise ValueError(
             f'{key.capitalize()} connot be bigger than {max_len} characters.')
